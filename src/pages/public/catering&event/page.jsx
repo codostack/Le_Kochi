@@ -103,7 +103,6 @@ const services = [
 ];
 
 export default function CateringPage() {
-  const [pressed, setPressed] = useState(false);
 
   return (
     <div
@@ -258,9 +257,6 @@ export default function CateringPage() {
 
   {/* Button on image bottom right */}
   <button
-    onMouseDown={() => setPressed(true)}
-    onMouseUp={() => setPressed(false)}
-    onMouseLeave={() => setPressed(false)}
     style={{
       position: "absolute",
       bottom: "24px",
