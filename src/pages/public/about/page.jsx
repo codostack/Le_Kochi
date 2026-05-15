@@ -9,11 +9,8 @@ import {
 
 export default function AboutHeader() {
   return (
-    <section className="min-h-screen lg:h-screen overflow-x-hidden bg-[#05110a] relative flex items-center py-16 lg:py-0">
-      
+<section className="min-h-screen overflow-x-hidden bg-[#05110a] relative flex items-center py-16 lg:py-0">      
       {/* Background Glow */}
-      {/* <div className="absolute top-[-180px] left-[-180px] w-[400px] h-[400px] bg-[#c5a059]/10 blur-[120px] rounded-full"></div> */}
-      {/* <div className="absolute bottom-[-180px] right-[-180px] w-[400px] h-[400px] bg-[#c5a059]/10 blur-[120px] rounded-full"></div> */}
 
       <div className="relative max-w-7xl mx-auto  w-full px-6 pb-10 lg:px-10 flex items-center">
 
