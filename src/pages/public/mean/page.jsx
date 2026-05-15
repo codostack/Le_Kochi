@@ -1,6 +1,4 @@
-// App.js
-import React, { useState } from "react";
-import "./styles.css";
+import { useState } from "react";
 
 const menuData = {
   DOSAS: [
@@ -33,7 +31,6 @@ const menuData = {
         "https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop",
     },
   ],
-
   "KERALA SPECIALS": [
     {
       name: "Kerala Porotta",
@@ -64,7 +61,6 @@ const menuData = {
         "https://images.unsplash.com/photo-1628294896516-0d73c91f8d10?q=80&w=1200&auto=format&fit=crop",
     },
   ],
-
   SNACKS: [
     {
       name: "Samosa",
@@ -95,7 +91,6 @@ const menuData = {
         "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1200&auto=format&fit=crop",
     },
   ],
-
   HAKKA: [
     {
       name: "Hakka Noodles",
@@ -132,59 +127,130 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("DOSAS");
 
   return (
-    <div className="desktop-container">
+    <div
+      className="min-h-screen w-full"
+      style={{ background: "#0b0b0b", fontFamily: "'Poppins', sans-serif", color: "white" }}
+    >
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
 
-      {/* STICKY HEADER */}
-      <div className="menu-sticky">
+      {/* ── STICKY NAVBAR ── */}
+      <div
+className="sticky top-[90px] z-40 w-full px-6 pt-[18px] pb-[18px]"
+        style={{ background: "#0b0b0b", borderBottom: "1px solid #1d1d1d" }}
+      >
+        <div className="mx-auto w-full max-w-[1600px]">
 
-        <div className="menu-title">
-          <span></span>
-          <h2>OUR MENU</h2>
-          <span></span>
-        </div>
-
-        <nav className="nav-tabs">
-          {Object.keys(menuData).map((tab) => (
-            <button
-              key={tab}
-              className={activeTab === tab ? "active" : ""}
-              onClick={() => setActiveTab(tab)}
+          {/* OUR MENU title row */}
+          <div className="flex items-center justify-center gap-[18px] mb-[22px]">
+            <span className="block h-[2px] w-20" style={{ background: "#d4af37" }} />
+            <h2
+              className="text-[34px] font-medium tracking-[3px] max-md:text-2xl max-md:tracking-[2px]"
+              style={{ color: "#d4af37" }}
             >
-              {tab}
-            </button>
-          ))}
-        </nav>
-
-      </div>
-
-      {/* MENU GRID */}
-      <div className="menu-grid">
-        {menuData[activeTab].map((item, index) => (
-          <div className="menu-card" key={index}>
-
-            <div className="card-left">
-              <h3>{item.name}</h3>
-
-              <p>
-                {item.desc.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </p>
-
-              <h4>{item.price}</h4>
-            </div>
-
-            <div className="card-right">
-              <img src={item.image} alt={item.name} />
-            </div>
-
+              OUR MENU
+            </h2>
+            <span className="block h-[2px] w-20" style={{ background: "#d4af37" }} />
           </div>
-        ))}
+
+          {/* Category tabs */}
+          <nav className="flex gap-[14px] max-md:gap-[10px]">
+            {Object.keys(menuData).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="relative cursor-pointer border-none bg-transparent pb-[10px] text-[15px] font-medium max-md:px-4 max-md:py-[10px] max-md:text-xs"
+                style={{ color: activeTab === tab ? "#ffffff" : "#bfbfbf" }}
+              >
+                {tab}
+                {activeTab === tab && (
+                  <span
+                    className="absolute bottom-0 left-0 h-[3px] w-full rounded-[10px]"
+                    style={{ background: "#f4a325" }}
+                  />
+                )}
+              </button>
+            ))}
+          </nav>
+
+        </div>
       </div>
 
+      {/* ── MENU GRID ── */}
+      <div className="mx-auto w-full max-w-[1600px] px-6 py-[50px] max-md:px-[14px] max-md:py-[35px]">
+        <div
+          className="
+            grid gap-5
+            grid-cols-4
+            max-xl:grid-cols-2
+            max-md:grid-cols-1
+            min-[1600px]:grid-cols-5
+          "
+        >
+          {menuData[activeTab].map((item, index) => (
+            <div
+              key={index}
+              className="
+                flex items-center justify-between gap-4
+                min-h-[190px] rounded-[22px] p-[18px]
+                transition-all duration-300 ease-in-out
+                cursor-default
+                max-md:min-h-0 max-md:rounded-[18px] max-md:p-[14px] max-md:gap-[14px]
+              "
+              style={{ background: "#151515", border: "1px solid #222" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-5px)";
+                e.currentTarget.style.borderColor = "#d4af37";
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(212,175,55,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.borderColor = "#222";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              {/* LEFT */}
+              <div className="flex-1 min-w-0">
+                <h3
+                  className="mb-[10px] text-[19px] font-semibold leading-[1.3] text-white max-md:mb-2 max-md:text-[18px]"
+                >
+                  {item.name}
+                </h3>
+                <p
+                  className="mb-[14px] text-[13px] leading-[1.5] max-md:mb-[10px] max-md:text-[12px]"
+                  style={{ color: "#aaa" }}
+                >
+                  {item.desc.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </p>
+                <h4
+                  className="text-[22px] font-bold max-md:text-[18px]"
+                  style={{ color: "#d4af37" }}
+                >
+                  {item.price}
+                </h4>
+              </div>
+
+              {/* RIGHT — image */}
+              <div
+                className="h-[120px] w-[120px] flex-shrink-0 overflow-hidden rounded-[16px] max-md:h-[110px] max-md:w-[110px] max-md:rounded-[14px]"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

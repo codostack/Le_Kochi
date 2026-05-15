@@ -1,108 +1,155 @@
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FiShoppingCart } from "react-icons/fi";
+
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Menu", path: "/menu" },
+    { name: "About Us", path: "/about" },
+    { name: "Catering", path: "/catering" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
-      <nav style={styles.nav}>
-        <div style={styles.logoWrap}>
-          <div style={styles.logoIcon}>
-            <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
-              <path
-                d="M18 2 C10 2 4 8 4 14 C4 20 10 26 18 26 C26 26 32 20 32 14"
-                stroke="#c8821e"
-                strokeWidth="2.5"
-                fill="none"
-                strokeLinecap="round"
-              />
-              <path
-                d="M10 10 Q18 4 26 10"
-                stroke="#c8821e"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+    <>
+      {/* Navbar */}
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 ${
+          location.pathname !== "/" || scrolled
+            ? "bg-black shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="flex items-center justify-between px-8 py-6">
+          
+          {/* Logo */}
+          <Link to="/" className="flex flex-col items-center leading-none">
+            <h1 className="text-[32px] font-bold text-[#FFD700] tracking-tight">
+              Le Kochi
+            </h1>
 
-          <div>
-            <div style={styles.logoText}>
-              <span style={styles.logoLe}>Le </span>
-              <span style={styles.logoKochi}>Kochi</span>
-            </div>
+            <div className="flex items-center w-full mt-1">
+              <div className="h-[1px] flex-grow bg-red-600"></div>
 
-            <div style={styles.logoSub}>
-              — Cafe &amp; Kitchen —
+              <span className="text-[#FFD700] text-[10px] px-2 whitespace-nowrap font-medium uppercase tracking-widest">
+                Café & Kitchen
+              </span>
+
+              <div className="h-[1px] flex-grow bg-red-600"></div>
             </div>
-          </div>
+          </Link>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex items-center gap-10 text-[13px] font-bold mx-auto">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+
+              return (
+                <li key={item.name} className="relative group">
+                  <Link
+                    to={item.path}
+                    className={`uppercase transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#FFD700]"
+                        : "text-white hover:text-[#FFD700]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+
+                  {/* Active Underline */}
+                  {isActive && (
+                    <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-red-600" />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Order Button */}
+          <Link
+            to="/order"
+            className="hidden md:flex items-center gap-3 border-2 border-red-600 px-6 py-2 rounded-full hover:bg-red-600/10 transition-all duration-300 group"
+          >
+            <span className="text-[#FFD700] text-sm font-bold tracking-widest uppercase">
+              Order Online
+            </span>
+
+            <FiShoppingCart className="text-[#FFD700] text-lg" />
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-[#FFD700] text-4xl"
+          >
+            {menuOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
         </div>
 
-        <button style={styles.menuBtn} aria-label="Menu">
-          <span style={styles.menuLine} />
-          <span style={styles.menuLine} />
-          <span style={styles.menuLine} />
-        </button>
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 bg-black ${
+            menuOpen ? "max-h-screen py-8" : "max-h-0"
+          }`}
+        >
+          <ul className="flex flex-col items-center gap-6 text-lg font-bold">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+
+              return (
+                <li key={item.name}>
+                  <Link
+                    to={item.path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`uppercase transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#FFD700]"
+                        : "text-white hover:text-[#FFD700]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+
+            {/* Mobile Order Button */}
+            <li>
+              <Link
+                to="/order"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 border-2 border-red-600 text-[#FFD700] px-8 py-3 rounded-full mt-4 uppercase text-sm font-bold hover:bg-red-600/10 transition-all duration-300"
+              >
+                Order Online
+
+                <FiShoppingCart />
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
+
+      {/* Spacer */}
+      <div className="h-[100px]" />
+    </>
   );
 }
-
-const styles = {
-
-  nav: {
-      position: "sticky",
-  top: 0,
-  zIndex: 1000,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "16px 20px 12px",
-    borderBottom: "1px solid rgba(200,130,30,0.15)",
-    background: "#0f1a0f",
-  },
-
-  logoWrap: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-  },
-
-  logoIcon: {
-    lineHeight: 0,
-  },
-
-  logoText: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 20,
-    fontWeight: 900,
-    lineHeight: 1.1,
-  },
-
-  logoLe: {
-    color: "#c8821e",
-  },
-
-  logoKochi: {
-    color: "#f5efe6",
-  },
-
-  logoSub: {
-    fontSize: 9,
-    color: "#c8821e",
-    letterSpacing: 1,
-    marginTop: 1,
-  },
-
-  menuBtn: {
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    display: "flex",
-    flexDirection: "column",
-    gap: 5,
-    padding: 4,
-  },
-
-  menuLine: {
-    display: "block",
-    width: 22,
-    height: 2,
-    background: "#c8821e",
-    borderRadius: 2,
-  },
-};
