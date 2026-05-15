@@ -1,0 +1,281 @@
+/* styles.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0b0b0b;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+/* MAIN CONTAINER */
+
+.desktop-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
+  padding: 50px 24px;
+}
+
+/* ================= TITLE ================= */
+
+.menu-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.menu-title span {
+  width: 80px;
+  height: 2px;
+  background: #d4af37;
+}
+
+.menu-title h2 {
+  color: #d4af37;
+  font-size: 34px;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+/* ================= NAV TABS ================= */
+
+.nav-tabs {
+  display: flex;
+  gap: 14px;
+}
+
+.nav-tabs button {
+  background: transparent;
+  border: none;
+  color: #bfbfbf;
+  font-size: 15px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-tabs .active {
+  color: white;
+}
+
+.nav-tabs .active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #f4a325;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+
+/* ================= GRID ================= */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* ================= CARD ================= */
+
+.menu-card {
+  background: #151515;
+  border: 1px solid #222;
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 190px;
+  transition: 0.3s ease;
+  padding: 18px;
+  gap: 16px;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  border-color: #d4af37;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+}
+
+/* ================= LEFT CONTENT ================= */
+
+.card-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-left h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+  color: #fff;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.card-left p {
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.card-left h4 {
+  color: #d4af37;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ================= IMAGE ================= */
+
+.card-right {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= LARGE DESKTOP ================= */
+
+@media (min-width: 1600px) {
+  .menu-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1200px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .desktop-container {
+    padding: 35px 14px;
+  }
+
+  .menu-title {
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .menu-title h2 {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .menu-title span {
+    width: 40px;
+  }
+
+  .nav-tabs {
+    gap: 10px;
+  }
+
+  .nav-tabs button {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .menu-card {
+    min-height: auto;
+    padding: 14px;
+    gap: 14px;
+    border-radius: 18px;
+  }
+
+  .card-left {
+    flex: 1;
+  }
+
+  .card-left h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .card-left p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .card-left h4 {
+    font-size: 18px;
+  }
+
+  .card-right {
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+  }
+}
+
+/* ================= STICKY HEADER ================= */
+
+.menu-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #0b0b0b;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* Optional blur effect */
+
+.menu-sticky::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #1d1d1d;
+}
+
+/* Better spacing */
+
+.menu-title {
+  margin-bottom: 22px;
+}
+
+.nav-tabs {
+  margin-bottom: 0;
+}
+
+/* Mobile sticky spacing */
+
+@media (max-width: 768px) {
+  .menu-sticky {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+}

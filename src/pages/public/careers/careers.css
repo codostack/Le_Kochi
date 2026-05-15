@@ -1,0 +1,231 @@
+/* careers.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #020202;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+/* PAGE */
+
+.careers-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #000000, #031b15);
+  overflow: hidden;
+}
+
+/* ================= HERO ================= */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.small-text {
+  color: #d4af37;
+  letter-spacing: 3px;
+  font-size: 35px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+  .small{
+    font-size: 33px;
+  }
+
+.hero-content h1 {
+  font-size: 58px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.description {
+  color: #d0d0d0;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+/* ================= TEAM IMAGE ================= */
+
+.team-section {
+  max-width: 1200px;
+  margin: -70px auto 60px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.team-section img {
+  width: 100%;
+  border-radius: 28px;
+  object-fit: cover;
+  max-height: 520px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= POSITIONS ================= */
+
+.positions-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px 80px;
+}
+
+.positions-section h2 {
+  text-align: center;
+  color: #d4af37;
+  letter-spacing: 2px;
+  margin-bottom: 35px;
+  font-size: 28px;
+}
+
+/* JOB LIST */
+
+.positions-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* JOB CARD */
+
+.job-card {
+  background: rgba(7, 28, 22, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(10, 38, 30, 1);
+}
+
+.job-card span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.job-card button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  color: #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 46px;
+  }
+
+  .positions-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 320px;
+    padding: 60px 18px;
+  }
+
+  .small-text {
+    font-size: 13px;
+  }
+
+  .small{
+        font-size: 13px;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+    margin-bottom: 14px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .team-section {
+    margin-top: -40px;
+    margin-bottom: 40px;
+    padding: 0 14px;
+  }
+
+  .team-section img {
+    border-radius: 20px;
+  }
+
+  .positions-section {
+    padding: 0 14px 60px;
+  }
+
+  .positions-section h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .positions-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .job-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .job-card span {
+    font-size: 15px;
+  }
+
+  .job-card button {
+    width: 36px;
+    height: 36px;
+  }
+}
