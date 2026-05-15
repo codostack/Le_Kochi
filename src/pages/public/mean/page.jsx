@@ -144,10 +144,10 @@ className="sticky top-[90px] z-40 w-full px-6 pt-[18px] pb-[18px]"
         <div className="mx-auto w-full max-w-[1600px]">
 
           {/* OUR MENU title row */}
-          <div className="flex items-center justify-center gap-[18px] mb-[22px]">
+          <div className="flex items-center justify-center gap-[10px] mb-[22px]">
             <span className="block h-[2px] w-20" style={{ background: "#d4af37" }} />
             <h2
-              className="text-[34px] font-medium tracking-[3px] max-md:text-2xl max-md:tracking-[2px]"
+              className="text-[30px] font-medium tracking-[3px] max-md:text-2xl max-md:tracking-[2px]"
               style={{ color: "#d4af37" }}
             >
               OUR MENU

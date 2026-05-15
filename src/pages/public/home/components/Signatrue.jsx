@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SignatureDishes = () => {
+  const scrollRef = useRef(null);
+
   const dishes = [
     {
       title: "KOZHI CHADACHU KOOTIYADHU",
@@ -25,59 +27,105 @@ const SignatureDishes = () => {
     },
   ];
 
-  return (
-    <section className="bg-black text-white py-12 px-4">
-      <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-4 mb-2">
-          <span className="h-[2px] w-12 bg-red-600"></span>
+  // Duplicating for the continuous loop effect
+  const allDishes = [...dishes, ...dishes];
 
-          <h2 className="text-[#FFD700] text-2xl md:text-3xl font-bold tracking-wider uppercase">
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = () => {
+      const isMobile = window.innerWidth < 640;
+      // Scroll by half the container width on mobile (to move 2 dishes)
+      const scrollAmount = isMobile ? scrollContainer.offsetWidth : scrollContainer.offsetWidth;
+
+      if (scrollContainer.scrollLeft + scrollContainer.offsetWidth >= scrollContainer.scrollWidth - 20) {
+        scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    };
+
+    const interval = setInterval(autoScroll, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const manualScroll = (direction) => {
+    const scrollAmount = scrollRef.current.offsetWidth;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <section className="bg-black text-white py-12 px-2 overflow-hidden">
+      {/* Header Section */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="h-[1px] w-8 bg-red-600"></span>
+          <h2 className="text-[#FFD700] text-xl md:text-3xl font-bold tracking-[0.2em] uppercase">
             Signature Dishes
           </h2>
-
-          <span className="h-[2px] w-12 bg-red-600"></span>
+          <span className="h-[1px] w-8 bg-red-600"></span>
         </div>
-
-        <p className="text-gray-300 italic text-sm md:text-base">
+        <p className="text-gray-400 italic text-[10px] md:text-sm">
           Experience the real taste of Kerala
         </p>
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 text-[#FFD700]">
-          <ChevronLeft size={48} strokeWidth={1} />
+      <div className="relative max-w-7xl mx-auto px-4">
+        {/* Navigation Arrows */}
+        <button
+          onClick={() => manualScroll("left")}
+          className="absolute left-[-10px] top-1/2 -translate-y-1/2 z-30 text-[#FFD700] hover:scale-110 transition-transform"
+        >
+          <ChevronLeft size={36} strokeWidth={1.5} />
         </button>
 
-        <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 text-[#FFD700]">
-          <ChevronRight size={48} strokeWidth={1} />
+        <button
+          onClick={() => manualScroll("right")}
+          className="absolute right-[-10px] top-1/2 -translate-y-1/2 z-30 text-[#FFD700] hover:scale-110 transition-transform"
+        >
+          <ChevronRight size={36} strokeWidth={1.5} />
         </button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-10">
-          {dishes.map((dish, index) => (
+        {/* Scroller Container */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-4 no-scrollbar snap-x snap-mandatory px-2"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {allDishes.map((dish, index) => (
             <div
               key={index}
-              className="bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden"
+              className="
+                min-w-[calc(50%-8px)] 
+                md:min-w-[calc(25%-12px)] 
+                snap-start bg-[#0a0a0a] rounded-xl border border-white/5 overflow-hidden flex-shrink-0
+              "
             >
-              <div className="relative h-56 overflow-hidden">
+              {/* Image with rounded corners as per your image */}
+              <div className="relative h-36 sm:h-44 md:h-56 overflow-hidden m-2 rounded-lg">
                 <img
                   src={dish.image}
                   alt={dish.title}
                   className="w-full h-full object-cover"
                 />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               </div>
 
-              <div className="p-5 text-center">
-                <h3 className="text-[#FFD700] font-bold text-sm min-h-[40px]">
+              <div className="p-3 text-center">
+                <h3 className="text-[#FFD700] font-semibold text-[9px] md:text-sm tracking-wide h-8 flex items-center justify-center leading-tight">
                   {dish.title}
                 </h3>
-
-                <p className="text-gray-400 text-xs mt-3 mb-6">
+                
+                {/* Description hidden on mobile to keep it clean like the sample */}
+                <p className="hidden md:block text-gray-400 text-[10px] mt-2 mb-4">
                   {dish.description}
                 </p>
 
-                <button className="border border-[#FFD700] px-5 py-2 text-xs uppercase tracking-widest hover:bg-[#FFD700] hover:text-black transition-all duration-300">
+                <button className="mt-2 border border-[#FFD700]/50 px-3 py-1 text-[8px] md:text-[10px] uppercase tracking-tighter hover:bg-[#FFD700] hover:text-black transition-colors">
                   View More
                 </button>
               </div>
@@ -85,6 +133,12 @@ const SignatureDishes = () => {
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };

@@ -143,7 +143,7 @@ export default function ContactPage() {
 const styles = {
   contactSection: {
     minHeight: "100vh",
-    background: "radial-gradient(circle at center, #142414 0%, #0a120a 100%)",
+    background: "radial-gradient(circle at center, #000000 0%, #0c0c0c 100%)",
     color: "#f5efe6",
     fontFamily: "'DM Sans', sans-serif",
     display: "flex",
