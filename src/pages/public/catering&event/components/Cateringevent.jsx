@@ -219,7 +219,7 @@ const styles = {
   },
 btn: {
   position: "absolute",
-  bottom: window.innerWidth <= 468 ? "130px" : "20px",
+  bottom: window.innerWidth <= 468 ? "150px" : "20px",
   left: "15px",
   backgroundColor: "#a1720b",
   border: "none",
