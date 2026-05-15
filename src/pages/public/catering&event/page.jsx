@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const foodImage =
   "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1200&auto=format&fit=crop";
