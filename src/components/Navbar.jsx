@@ -11,27 +11,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
-  // Prevent body scroll when mobile menu open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [menuOpen]);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -44,131 +30,126 @@ export default function Navbar() {
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 ${
           location.pathname !== "/" || scrolled
-            ? "bg-black/95 backdrop-blur-xl shadow-xl"
+            ? "bg-black shadow-lg"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex items-center justify-between px-8 py-6">
           
-          {/* NAV CONTENT */}
-          <div className="flex items-center justify-between h-[78px] md:h-[92px]">
-            
-            {/* LOGO */}
-            <Link
-              to="/"
-              className="flex flex-col justify-center leading-none shrink-0"
-            >
-              <h1 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold text-[#FFD700] tracking-tight">
-                Le Kochi
-              </h1>
+          {/* Logo */}
+          <Link to="/" className="flex flex-col items-center leading-none">
+            <h1 className="text-[32px] font-bold text-[#FFD700] tracking-tight">
+              Le Kochi
+            </h1>
 
-              <div className="flex items-center mt-1">
-                <div className="h-[1px] w-4 sm:w-6 bg-red-600"></div>
+            <div className="flex items-center w-full mt-1">
+              <div className="h-[1px] flex-grow bg-red-600"></div>
 
-                <span className="text-[#FFD700] text-[7px] sm:text-[8px] md:text-[10px] px-2 uppercase tracking-[0.25em] whitespace-nowrap">
-                  Café & Kitchen
-                </span>
-
-                <div className="h-[1px] w-4 sm:w-6 bg-red-600"></div>
-              </div>
-            </Link>
-
-            {/* DESKTOP MENU */}
-            <ul className="hidden lg:flex items-center gap-8 xl:gap-10 text-[12px] xl:text-[13px] font-bold">
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.path;
-
-                return (
-                  <li key={item.name} className="relative">
-                    <Link
-                      to={item.path}
-                      className={`uppercase transition-all duration-300 ${
-                        isActive
-                          ? "text-[#FFD700]"
-                          : "text-white hover:text-[#FFD700]"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-
-                    {isActive && (
-                      <div className="absolute left-0 -bottom-2 w-full h-[2px] bg-red-600 rounded-full"></div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-
-            {/* DESKTOP ORDER BUTTON */}
-            <Link
-              to="/order"
-              className="hidden lg:flex items-center gap-3 border border-red-600 px-5 xl:px-6 py-2.5 rounded-full hover:bg-red-600/10 transition-all duration-300 group"
-            >
-              <span className="text-[#FFD700] text-xs xl:text-sm font-bold tracking-[0.2em] uppercase">
-                Order Online
+              <span className="text-[#FFD700] text-[10px] px-2 whitespace-nowrap font-medium uppercase tracking-widest">
+                Café & Kitchen
               </span>
 
-              <FiShoppingCart className="text-[#FFD700] text-lg" />
-            </Link>
+              <div className="h-[1px] flex-grow bg-red-600"></div>
+            </div>
+          </Link>
 
-            {/* MOBILE MENU BUTTON */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden text-[#FFD700] text-3xl sm:text-4xl flex items-center justify-center w-11 h-11"
-            >
-              {menuOpen ? <HiX /> : <HiMenuAlt3 />}
-            </button>
-          </div>
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex items-center gap-10 text-[13px] font-bold mx-auto">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+
+              return (
+                <li key={item.name} className="relative group">
+                  <Link
+                    to={item.path}
+                    className={`uppercase transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#FFD700]"
+                        : "text-white hover:text-[#FFD700]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+
+                  {/* Active Underline */}
+                  {isActive && (
+                    <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-red-600" />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Order Button */}
+          <Link
+            to="/order"
+            className="hidden md:flex items-center gap-3 border-2 border-red-600 px-6 py-2 rounded-full hover:bg-red-600/10 transition-all duration-300 group"
+          >
+            <span className="text-[#FFD700] text-sm font-bold tracking-widest uppercase">
+              Order Online
+            </span>
+
+            <FiShoppingCart className="text-[#FFD700] text-lg" />
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-[#FFD700] text-4xl"
+          >
+            {menuOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* Mobile Menu */}
         <div
-          className={`lg:hidden absolute top-full left-0 w-full bg-black/98 backdrop-blur-2xl transition-all duration-300 overflow-hidden ${
-            menuOpen
-              ? "max-h-screen opacity-100 border-t border-white/10"
-              : "max-h-0 opacity-0"
+          className={`md:hidden overflow-hidden transition-all duration-300 bg-black ${
+            menuOpen ? "max-h-screen py-8" : "max-h-0"
           }`}
         >
-          <div className="px-6 py-8">
-            <ul className="flex flex-col gap-6">
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.path;
+          <ul className="flex flex-col items-center gap-6 text-lg font-bold">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
 
-                return (
-                  <li key={item.name}>
-                    <Link
-                      to={item.path}
-                      className={`block uppercase text-base font-bold tracking-[0.15em] transition-all duration-300 ${
-                        isActive
-                          ? "text-[#FFD700]"
-                          : "text-white hover:text-[#FFD700]"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+              return (
+                <li key={item.name}>
+                  <Link
+                    to={item.path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`uppercase transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#FFD700]"
+                        : "text-white hover:text-[#FFD700]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
 
-            {/* MOBILE BUTTON */}
-            <Link
-              to="/order"
-              className="mt-8 flex items-center justify-center gap-3 border border-red-600 text-[#FFD700] px-6 py-4 rounded-full uppercase text-sm font-bold tracking-[0.15em] hover:bg-red-600/10 transition-all duration-300"
-            >
-              Order Online
-              <FiShoppingCart className="text-lg" />
-            </Link>
-          </div>
+            {/* Mobile Order Button */}
+            <li>
+              <Link
+                to="/order"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 border-2 border-red-600 text-[#FFD700] px-8 py-3 rounded-full mt-4 uppercase text-sm font-bold hover:bg-red-600/10 transition-all duration-300"
+              >
+                Order Online
+
+                <FiShoppingCart />
+              </Link>
+            </li>
+          </ul>
         </div>
       </nav>
 
-      {/* SPACER */}
-      <div className="h-[78px] md:h-[92px]" />
+      {/* Spacer */}
+      <div className="h-[100px]" />
     </>
   );
-} 
+}

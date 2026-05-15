@@ -69,7 +69,7 @@ const SignatureDishes = () => {
           </h2>
           <span className="h-[1px] w-8 bg-red-600"></span>
         </div>
-        <p className="text-gray-400 italic text-[10px] md:text-sm">
+        <p className="text-gray-400 text-center italic text-[10px] md:text-sm">
           Experience the real taste of Kerala
         </p>
       </div>
