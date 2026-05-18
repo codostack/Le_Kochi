@@ -1,8 +1,8 @@
 import React from 'react';
 
 const PremiumDosaOffers = () => {
-  // Premium Dosa data set with Dollar pricing
-  const offers = [
+
+    const offers = [
     {
       id: 1,
       title: "MASALA",
@@ -34,38 +34,35 @@ const PremiumDosaOffers = () => {
   ];
 
   return (
-    <div className="w-full bg-black py-10 px-4 md:px-8 font-sans select-none">
+    <div className="w-full bg-black py-6 px-4 font-sans select-none">
       
       {/* Premium Header Line */}
-      <div className="max-w-7xl mx-auto mb-8 flex items-center">
-        <h2 className="text-lg md:text-xl font-bold tracking-widest text-zinc-300 uppercase whitespace-nowrap mr-4">
+      <div className="max-w-5xl mx-auto mb-5 flex items-center">
+        <h2 className="text-xs md:text-sm font-bold tracking-widest text-zinc-400 uppercase whitespace-nowrap mr-3">
           Top Offers Today
         </h2>
-        <div className="h-[1px] bg-gradient-to-r coding-linear from-cyan-500/50 via-zinc-800 to-transparent flex-grow" />
+        <div className="h-[1px] bg-gradient-to-r from-cyan-500/30 via-zinc-800 to-transparent flex-grow" />
       </div>
 
-      {/* Horizontal Touch Scroller */}
-      <div className="max-w-7xl mx-auto flex items-center gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none scroll-smooth">
-        {offers.map((offer) => (
+      {/* Grid to force exactly 3 boxes per view horizontally */}
+      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-3 md:gap-4">
+        {offers.slice(0, 3).map((offer) => (
           <div
             key={offer.id}
-            className="w-[200px] sm:w-[220px] aspect-square shrink-0 bg-gradient-to-b from-zinc-900 to-black border border-zinc-800 rounded-none p-5 flex flex-col items-center justify-between snap-start relative group transition-all duration-300 hover:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,255,255,0.03)]"
+            className="w-full min-h-[170px] sm:min-h-[190px] bg-gradient-to-b from-zinc-900 to-black border border-zinc-800 rounded-xl p-3 pt-4 pb-4 flex flex-col items-center justify-between relative group transition-all duration-300 hover:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,255,255,0.03)] overflow-hidden"
           >
-            {/* Subtle Top Metallic Glow Effect */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-50" />
+            {/* Top Metallic Glow */}
+            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-zinc-600 to-transparent opacity-50" />
             
             {/* Header Content */}
-            <div className="text-center w-full mt-2">
-              <h3 className="text-sm font-bold tracking-widest text-zinc-400 group-hover:text-white transition-colors duration-200 uppercase">
+            <div className="text-center w-full">
+              <h3 className="text-[10px] md:text-xs font-bold tracking-wider text-zinc-400 group-hover:text-white transition-colors duration-200 uppercase truncate">
                 {offer.title}
               </h3>
-              
-              <div className="mt-1">
+              <div className="mt-0.5">
                 <span 
-                  className={`text-xl font-black tracking-tight ${
-                    offer.isHighlight 
-                      ? 'text-teal-400 drop-shadow-[0_2px_8px_rgba(45,212,191,0.2)]' 
-                      : 'text-cyan-400 drop-shadow-[0_2px_8px_rgba(34,211,238,0.2)]'
+                  className={`text-sm md:text-base font-black tracking-tight ${
+                    offer.isHighlight ? 'text-teal-400' : 'text-cyan-400'
                   }`}
                 >
                   {offer.subTitle}
@@ -73,11 +70,11 @@ const PremiumDosaOffers = () => {
               </div>
             </div>
 
-            {/* Dosa Image Container with Sharp Frame Layout */}
-            <div className="w-28 h-28 mb-1 flex items-center justify-center relative bg-zinc-950 p-1 border border-zinc-900 shadow-inner">
+            {/* Downsized Image Container */}
+            <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center relative bg-zinc-950 p-0.5 border border-zinc-900 rounded-lg overflow-hidden">
               <img
                 src={offer.image}
-                alt={`${offer.title} Dosa`}
+                alt={offer.title}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
