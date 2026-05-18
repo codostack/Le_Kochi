@@ -46,7 +46,7 @@ export default function ContactPage() {
         `}
       </style>
 
-      <section style={styles.contactSection}>
+      <section className='bg-[#041a13]' style={styles.contactSection}>
         <div style={styles.contentWrapper}>
           
           {/* HEADER */}
@@ -143,7 +143,6 @@ export default function ContactPage() {
 const styles = {
   contactSection: {
     minHeight: "100vh",
-    background: "radial-gradient(circle at center, #000000 0%, #0c0c0c 100%)",
     color: "#f5efe6",
     fontFamily: "'DM Sans', sans-serif",
     display: "flex",

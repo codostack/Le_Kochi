@@ -11,7 +11,7 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp, FaGoogle } from "react-icons/fa";
 
-import logo from "../assets/images/WhatsApp Image 2026-05-18 at 7.03.22 PM.jpeg";
+import logo from "../assets/images/logo.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

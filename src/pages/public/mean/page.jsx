@@ -4,18 +4,49 @@ import { useState } from "react";
 const DISCOUNT = 10;
 
 const ALL_ITEMS = [
-  { id: 1,  name: "Rose Sharbat",     category: "Drinks",      price: 80,  rating: 4.4, stock: 35, cooking_time: "3 mins",  quality: "Regular",  description: "Cold rose flavored milk drink with basil seeds.",                       emoji: "🌹", grad: ["#3d1a1a","#6b2d2d"] },
-  { id: 2,  name: "Malabar Biryani",  category: "Biryani",     price: 220, rating: 4.8, stock: 12, cooking_time: "25 mins", quality: "Premium",  description: "Slow-cooked Malabar style biryani with aromatic spices and tender meat.",emoji: "🍛", grad: ["#1a1200","#3d2d00"] },
-  { id: 3,  name: "Kerala Fish Curry",category: "Main Course", price: 180, rating: 4.6, stock: 8,  cooking_time: "20 mins", quality: "Premium",  description: "Traditional Kerala fish curry with coconut milk and kodampuli.",        emoji: "🐟", grad: ["#001a1a","#003d3d"] },
-  { id: 4,  name: "Appam",            category: "Breads",      price: 40,  rating: 4.2, stock: 0,  cooking_time: "10 mins", quality: "Regular",  description: "Soft lacy rice pancake, best served with stew.",                       emoji: "🥞", grad: ["#1a1500","#3d3200"] },
-  { id: 5,  name: "Beef Fry",         category: "Starters",    price: 160, rating: 4.7, stock: 15, cooking_time: "15 mins", quality: "Premium",  description: "Spicy Kerala style beef dry fry with coconut pieces.",                 emoji: "🥩", grad: ["#2d0a0a","#5c1a1a"] },
-  { id: 6,  name: "Payasam",          category: "Desserts",    price: 60,  rating: 4.5, stock: 20, cooking_time: "5 mins",  quality: "Regular",  description: "Sweet rice pudding with cardamom and cashews.",                        emoji: "🍮", grad: ["#1a0d00","#3d2000"] },
-  { id: 7,  name: "Ghee Rice",        category: "Rice",        price: 90,  rating: 4.3, stock: 25, cooking_time: "15 mins", quality: "Regular",  description: "Fragrant basmati rice cooked in pure ghee with spices.",               emoji: "🍚", grad: ["#0d1a00","#1f3d00"] },
-  { id: 8,  name: "Masala Tea",       category: "Beverages",   price: 30,  rating: 4.1, stock: 50, cooking_time: "5 mins",  quality: "Regular",  description: "Strong spiced Indian chai with ginger and cardamom.",                  emoji: "☕", grad: ["#1a0d00","#4d2600"] },
-  { id: 9,  name: "Chicken Stew",     category: "Main Course", price: 190, rating: 4.7, stock: 10, cooking_time: "22 mins", quality: "Premium",  description: "Kerala chicken stew with coconut milk and vegetables.",                emoji: "🍲", grad: ["#001a0d","#003d1f"] },
-  { id: 10, name: "Puttu",            category: "Breads",      price: 50,  rating: 4.3, stock: 18, cooking_time: "8 mins",  quality: "Regular",  description: "Steamed rice cake with grated coconut layers.",                        emoji: "🫙", grad: ["#0d0d1a","#1a1a3d"] },
-  { id: 11, name: "Prawn Masala",     category: "Starters",    price: 200, rating: 4.9, stock: 6,  cooking_time: "18 mins", quality: "Premium",  description: "Juicy prawns in a rich masala gravy.",                                 emoji: "🦐", grad: ["#1a0a00","#4d2000"] },
-  { id: 12, name: "Fresh Lime Soda",  category: "Drinks",      price: 50,  rating: 4.0, stock: 40, cooking_time: "2 mins",  quality: "Regular",  description: "Chilled lime soda with mint.",                                         emoji: "🍋", grad: ["#0d1a00","#253d00"] },
+  {
+    id: 1,
+    name: "Rose Sharbat",
+    category: "Drinks",
+    price: 80,
+    rating: 4.4,
+    stock: 35,
+    cooking_time: "3 mins",
+    quality: "Regular",
+    description: "Cold rose flavored milk drink with basil seeds.",
+    image:
+      "https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=800&auto=format&fit=crop",
+  },
+
+  {
+    id: 2,
+    name: "Malabar Biryani",
+    category: "Biryani",
+    price: 220,
+    rating: 4.8,
+    stock: 12,
+    cooking_time: "25 mins",
+    quality: "Premium",
+    description:
+      "Slow-cooked Malabar style biryani with aromatic spices and tender meat.",
+    image:
+      "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=800&auto=format&fit=crop",
+  },
+
+  {
+    id: 3,
+    name: "Kerala Fish Curry",
+    category: "Main Course",
+    price: 180,
+    rating: 4.6,
+    stock: 8,
+    cooking_time: "20 mins",
+    quality: "Premium",
+    description:
+      "Traditional Kerala fish curry with coconut milk and kodampuli.",
+    image:
+    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghMXkDKhyphenhyphenIgZnH5MSor2Y0CvHpc4A1RjZ1X_iey-aFOj2TKRGHlxEaCTlUMcvfaqEkF1fKz0M23vXfQKju_d3LW7rm6T31f6votTowKeqBcr6mbtfI-rrU5KiPFb0AdRUvZMOMAg42vWfd/s1600/_DSC0760.jpg",
+  },
 ];
 
 const DUMMY_ORDERS = [
@@ -52,19 +83,23 @@ const rupee = (n) => `₹${Number(n).toFixed(2)}`;
 
 // ─── ITEM IMAGE — emoji on gradient ────────────────────────────
 function ItemImage({ item, className = "", style = {} }) {
-  const [from, to] = item.grad || ["#1a1a1a", "#2a2a2a"];
+  const fallback =
+    "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop";
+
   return (
     <div
-      className={`flex items-center justify-center flex-shrink-0 ${className}`}
+      className={`overflow-hidden flex-shrink-0 ${className}`}
       style={{
-        background: `linear-gradient(135deg, ${from}, ${to})`,
         border: "1px solid rgba(212,175,55,0.15)",
+        background: "#111",
         ...style,
       }}
     >
-      <span style={{ fontSize: "clamp(20px, 35%, 52px)", lineHeight: 1, userSelect: "none" }}>
-        {item.emoji}
-      </span>
+      <img
+        src={item.image || fallback}
+        alt={item.name}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 }
@@ -997,4 +1032,4 @@ export default function App() {
   const [page, setPage] = useState("menu");
   if (page === "orders") return <OrdersPage onBack={() => setPage("menu")} />;
   return <MenuPage onGoOrders={() => setPage("orders")} />;
-} 
+}
