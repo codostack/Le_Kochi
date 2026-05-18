@@ -11,7 +11,7 @@ export default function Home() {
     <div>
 <HomeHeader />
 <SignatureDishes/>
-<SignatureDishPage/>
+{/* <SignatureDishPage/> */}
 {/* <Headercontent4/> */}
     </div>
   );
