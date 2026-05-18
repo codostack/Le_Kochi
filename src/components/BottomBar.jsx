@@ -16,7 +16,7 @@ export default function MobileBottomBar() {
     { label: "CALL", icon: <PhoneIcon />, path: "/call" },
     { label: "DIRECTIONS", icon: <LocationIcon />, path: "/directions" },
     { label: "WHATSAPP", icon: <WhatsappIcon />, path: "/whatsapp" },
-    { label: "ORDER", icon: <OrderIcon />, path: "/order", order: true },
+    { label: "ORDER", icon: <OrderIcon />, path: "/menu", order: true },
   ];
 
   return (

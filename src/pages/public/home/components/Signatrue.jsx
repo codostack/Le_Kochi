@@ -42,7 +42,7 @@ const DosaRestaurantCard = () => {
       {/* Section Header */}
       <div className="max-w-md mx-auto mb-6 flex items-center md:max-w-4xl lg:max-w-6xl">
         <span className="text-xs font-bold tracking-wider text-gray-400 uppercase mr-3">
-          RESTAURANTS
+          Signature Dishes
         </span>
         <div className="h-px bg-zinc-800 flex-grow" />
       </div>
