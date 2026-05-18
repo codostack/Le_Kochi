@@ -1,7 +1,7 @@
-// import Headercontent4 from "./components/content1";
-// import Headercontent3 from "./components/content2";
+import Headercontent4 from "./components/content1";
+import Headercontent3 from "./components/content2";
 import HomeHeader from "./components/HomeHeader";
-import SignatureDishPage from "./components/signa";
+import LeKochiPlatform from "./components/play";
 import SignatureDishes from "./components/Signatrue";
 
 export default function Home() {
@@ -10,9 +10,10 @@ export default function Home() {
   return (
     <div>
 <HomeHeader />
+<Headercontent3/>
+<Headercontent4/>
 <SignatureDishes/>
-{/* <SignatureDishPage/> */}
-{/* <Headercontent4/> */}
+<LeKochiPlatform/>
     </div>
   );
 }

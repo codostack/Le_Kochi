@@ -56,7 +56,7 @@ export default function SignatureDishPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex scrollbar-hide border-b border-white/10">
+        <div className="flex overflow-x-auto scrollbar-hide border-b border-white/10">
           {TABS.map((tab) => (
             <button
               key={tab}
