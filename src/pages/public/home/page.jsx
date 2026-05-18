@@ -1,7 +1,7 @@
 // import Headercontent4 from "./components/content1";
 // import Headercontent3 from "./components/content2";
 import HomeHeader from "./components/HomeHeader";
-// import SignatureDishPage from "./components/signa";
+import SignatureDishPage from "./components/signa";
 import SignatureDishes from "./components/Signatrue";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
     <div>
 <HomeHeader />
 <SignatureDishes/>
-{/* <SignatureDishPage/> */}
+<SignatureDishPage/>
 {/* <Headercontent4/> */}
     </div>
   );
