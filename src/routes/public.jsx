@@ -5,7 +5,7 @@ import BottomBar from "../components/footer";
 
 import About from "../pages/public/about/page";
 import Contact from "../pages/public/contact/page";
-import Login from "../pages/api/login";
+import Login from "../pages/customer/api/login";
 import CareersPage from "../pages/public/careers/page";
 import CallPage from "../pages/call/page";
 import DirectionsPage from "../pages/directions/page";
@@ -15,7 +15,7 @@ import RestaurantMenu from "../pages/public/mean/page";
 import CateringPage from "../pages/public/catering&event/page";
 import Home from "../pages/public/home/page";
 import CateringGallery from "../pages/public/gallery/page";
-import RegistrationPage from "../pages/api/registration";
+import RegistrationPage from "../pages/customer/api/registration";
 
 const PublicRoutes = () => {
   return (

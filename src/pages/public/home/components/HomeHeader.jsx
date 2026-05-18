@@ -1,34 +1,46 @@
 import React from 'react';
-import { MapPin, Phone, Clock, ShoppingBag, Leaf, Flame, Heart, Star, Utensils, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Clock, ShoppingBag, Leaf, Flame, Heart, Star, } from 'lucide-react';
 
 // Path adjusted as per your setup
-import bgImage from '../../../../assets/images/WhatsApp Image 2026-05-14 at 4.31.29 PM (1).jpeg';
+// import bgImage from '../../../../assets/images/WhatsApp Image 2026-05-14 at 4.31.29 PM (1).jpeg';
 
 const KeralaFlavoursHero = () => {
   return (
     <div className="relative min-h-screen bg-black text-white font-sans overflow-hidden mt-[-120px]">
       
       {/* Background Image Container */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={bgImage} 
-          alt="Dosa Background" 
-          className="w-full h-full object-cover opacity-60 object-right md:object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
-      </div>
+ <div className="absolute inset-0 z-0 flex items-center justify-center ">
+  {/* Centered Image Container */}
+  <div className="relative w-full max-w-4xl h-[55%] md:h-[60%] overflow-hidden">
+    <img 
+      src="https://i.pinimg.com/1200x/18/dc/25/18dc251f518fd249f3522643ce3a626b.jpg" 
+      alt="Dosa Background" 
+      className="w-full h-full object-cover opacity-90"
+    />
+    
+    {/* Gradient Overlay centered with the image */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/20 to-transparent"></div>
+    
+    {/* Optional: Soft vignettes on top and bottom to blend with background */}
+    <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent"></div>
+    <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent"></div>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 md:pt-20 pb-40 md:pb-32 mt-[100px]">
-        <div className="max-w-2xl text-left">
+        <div className="max-w-2xl text-left mt-5">
           <p className="italic text-lg md:text-2xl font-serif mb-1 text-gray-200">A New Rhythm of</p>
-          <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-4">
-            <span className="text-yellow-500 block">KERALA</span>
-            <span className="text-white block">FLAVOURS</span>
-          </h1>
+          {/* <h1 className=" font-black tracking-tighter leading-none mb-4">
+   
+          </h1> */}
 
+            <h1 className=" font-serif text-2xl tracking-widest">
+                      <span className="text-5xl md:text-8xl text-[#c5a059] block">KERALA</span>
+            <span className=" text-5xl md:text-8xl text-white block">FLAVOURS</span>
+            </h1>
           <div className="flex items-center justify-start gap-3 mb-4 md:mb-6">
-            <p className="text-yellow-500 font-bold tracking-widest text-[10px] md:text-sm uppercase">
+            <p className="text-[#c5a059] font-bold tracking-widest text-[10px] md:text-sm uppercase">
               Authentic Kerala Cuisine
             </p>
             <div className="h-[1.5px] w-8 bg-red-600"></div>
@@ -74,12 +86,12 @@ const KeralaFlavoursHero = () => {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-2 md:flex md:flex-row gap-3">
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm">
-              <Utensils size={14} />
+            <button className="bg-[#c5a059] hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm">
+   
               View Menu
             </button>
             <button className="border border-gray-600 bg-black/60 md:bg-transparent md:border-red-600 hover:bg-red-600/10 text-white font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm">
-              <MessageCircle size={14} className="text-yellow-500" />
+            
               Join Whatsapp
             </button>
           </div>
@@ -122,7 +134,7 @@ const KeralaFlavoursHero = () => {
             </button>
           </div>
 
-          <button className="md:hidden w-full bg-red-800 text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-3 uppercase text-xs mt-2">
+          <button className="md:hidden w-full bg-red-800 text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-3 uppercase text-xs mt-2 mb-8">
             <span>Order Online</span>
             <ShoppingBag size={16} />
           </button>
