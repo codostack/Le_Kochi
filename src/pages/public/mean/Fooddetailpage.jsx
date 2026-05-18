@@ -63,7 +63,7 @@ function PaymentPanel({ cart, allItems, onViewCart, setCart, onOrderPlaced }) {
         cod: "Cash on Delivery",
       };
 
-      await axiosInstance.post("/customer/orders/place", {
+      await axiosInstance.post("/orders/placeOrders", {
         items,
         paymentMethod: methodMap[method],
         amount: total,
@@ -258,6 +258,7 @@ export default function FoodDetailPage({
   const [placing, setPlacing] = useState(false);
   const [placed, setPlaced] = useState(false);
   const [orderError, setOrderError] = useState("");
+console.log(orderError);
 
 
   const setQty = (val) => {
@@ -299,14 +300,9 @@ export default function FoodDetailPage({
         quantity: q,
       }));
 
-      const methodMap = {
-        upi: "UPI", card: "Card",
-        nb: "Net Banking", cod: "Cash on Delivery",
-      };
-
       // Read selected method from PaymentPanel — simplest: pass method up
       // OR just send "UPI" as default from mobile bar (no method selector there)
-      await axiosInstance.post("/customer/orders/place", {
+      await axiosInstance.post("/orders/placeOrders", {
         items,
         paymentMethod: "UPI",   // mobile bar has no selector; adjust if needed
         amount: mobileTotal,

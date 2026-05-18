@@ -95,8 +95,9 @@ function ProgressBar({ status }) {
 function OrderCard({ order, onViewDetail }) {
   const cfg       = STATUS_CONFIG[order.orderStatus] || STATUS_CONFIG.Pending;
   const itemCount = order.items?.reduce((s, i) => s + i.quantity, 0) ?? 0;
-  const date      = new Date(`${order.orderDate}T${order.orderTime}`);
-
+const date = new Date(
+  `${String(order.orderDate).split("T")[0]} ${order.orderTime}`
+);
   return (
     <div
       onClick={() => onViewDetail(order)}
@@ -129,7 +130,7 @@ function OrderCard({ order, onViewDetail }) {
             </span>
           </div>
           <p style={{ fontSize: 11, color: "#555", margin: "6px 0 0", fontFamily: "monospace" }}>
-            #{order.id.slice(0, 8).toUpperCase()}
+#{order.orderId || order.id.slice(0, 8).toUpperCase()}
           </p>
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
@@ -144,7 +145,7 @@ function OrderCard({ order, onViewDetail }) {
 
       {/* item image strip */}
       {order.items?.length > 0 && (
-        <div style={{ display: "flex", gap: 8, overflowX: "auto" }}>
+        <div style={{ display: "flex", gap: 8, }}>
           {order.items.slice(0, 4).map((item, idx) => {
             const imgSrc = item.image ||
               `https://placehold.co/56x56/151515/d4af37?text=${encodeURIComponent(item.name ?? "?")}`;
@@ -208,8 +209,9 @@ function OrderDetailPage({ order, onBack }) {
   const cfg       = STATUS_CONFIG[order.orderStatus] || STATUS_CONFIG.Pending;
   const subtotal  = order.items?.reduce((s, i) => s + Number(i.price) * i.quantity, 0) ?? 0;
   const discount  = Math.round(subtotal * DISCOUNT_PERCENT / 100);
-  const date      = new Date(`${order.orderDate}T${order.orderTime}`);
-
+const date = new Date(
+  `${String(order.orderDate).split("T")[0]} ${order.orderTime}`
+);
   return (
     <div style={{ minHeight: "100vh", background: "#0b0b0b", color: "#fff", fontFamily: "'Poppins', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -240,7 +242,7 @@ function OrderDetailPage({ order, onBack }) {
         <div style={{ flex: 1 }}>
           <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#d4af37" }}>ORDER DETAILS</p>
           <p style={{ margin: 0, fontSize: 10, color: "#555", fontFamily: "monospace" }}>
-            #{order.id.toUpperCase()}
+#{order.orderId || order.id.toUpperCase()}
           </p>
         </div>
         <StatusBadge status={order.orderStatus} />
@@ -366,7 +368,7 @@ export default function OrdersPage({ onBack }) {
     setLoading(true);
     setError("");
     try {
-      const res = await axiosInstance.get("/customer/orders/my-orders");
+      const res = await axiosInstance.get("/orders/my-orders");
       if (res.data.success) setOrders(res.data.orders);
       else setError("Failed to load orders.");
     } catch {

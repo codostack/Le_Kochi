@@ -26,7 +26,7 @@ export default function OrdersPage() {
     // ── FETCH ─────────────────────────────────────────────────────────────────
     const fetchOrders = async () => {
         try {
-            const res = await axiosInstance.get("/admin/orders");
+            const res = await axiosInstance.get("/orders/admin/orders");
             if (res.data.success) {
                 setOrders(res.data.orders || []);
             }
@@ -41,12 +41,15 @@ export default function OrdersPage() {
     const handleStatusUpdate = async (id, newStatus) => {
         setUpdating(id);
         try {
-            const res = await axiosInstance.put(`/admin/orders/${id}`, { status: newStatus });
+            const res = await axiosInstance.put(`/orders/admin/orders/${id}`, { status: newStatus });
             if (res.data.success) {
                 // Optimistic update – no full refetch needed
                 setOrders((prev) =>
-                    prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
-                );
+prev.map((o) =>
+    o.id === id
+        ? { ...o, orderStatus: newStatus }
+        : o
+)                );
             } else {
                 alert(res.data.message);
             }
@@ -62,7 +65,7 @@ export default function OrdersPage() {
     const handleDelete = async (id, orderId) => {
         if (!window.confirm(`Delete order ${orderId}? This cannot be undone.`)) return;
         try {
-            const res = await axiosInstance.delete(`/admin/orders/${id}`);
+            const res = await axiosInstance.delete(`/orders/admin/orders/${id}`);
             if (res.data.success) {
                 setOrders((prev) => prev.filter((o) => o.id !== id));
             } else {
@@ -76,13 +79,16 @@ export default function OrdersPage() {
 
     // ── DERIVED DATA ──────────────────────────────────────────────────────────
     const counts = { Pending: 0, Preparing: 0, Delivered: 0, Cancelled: 0 };
-    orders.forEach((o) => {
-        if (counts[o.status] !== undefined) counts[o.status]++;
-    });
+orders.forEach((o) => {
+    if (counts[o.orderStatus] !== undefined) {
+        counts[o.orderStatus]++;
+    }
+});
 
     const filtered = orders.filter((o) => {
-        const matchStatus = filter === "All" || o.status === filter;
-        const term = search.toLowerCase();
+const matchStatus =
+    filter === "All" || o.orderStatus === filter;
+            const term = search.toLowerCase();
         const matchSearch =
             (o.customer || "").toLowerCase().includes(term) ||
             (o.orderId  || "").toLowerCase().includes(term) ||
@@ -165,7 +171,7 @@ export default function OrdersPage() {
                         </thead>
                         <tbody>
                             {filtered.map((o) => {
-                                const sc = SELECT_COLORS[o.status] || SELECT_COLORS.Pending;
+                                const sc = SELECT_COLORS[o.orderStatus] || SELECT_COLORS.Pending;
                                 const isUpdating = updating === o.id;
 
                                 return (
@@ -221,13 +227,13 @@ export default function OrdersPage() {
 
                                         {/* Status Badge */}
                                         <td style={{ padding: "12px 14px" }}>
-                                            <Badge status={o.status} />
+<Badge status={o.orderStatus} />
                                         </td>
 
                                         {/* Change Status select */}
                                         <td style={{ padding: "12px 14px" }}>
                                             <select
-                                                value={o.status}
+                                                value={o.orderStatus}
                                                 disabled={isUpdating}
                                                 onChange={(e) => handleStatusUpdate(o.id, e.target.value)}
                                                 style={{

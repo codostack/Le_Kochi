@@ -75,7 +75,7 @@ export default function CartPage({
         nb: "Net Banking", cod: "Cash on Delivery",
       };
 
-      await axiosInstance.post("/customer/orders/place", {
+      await axiosInstance.post("/orders/placeOrders", {
         items,
         paymentMethod: methodMap[method],
         amount: total,

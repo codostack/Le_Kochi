@@ -48,7 +48,7 @@ const validate = ({ email, password }) => {
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const restoredCart = restorePendingCart();
+  // const restoredCart = restorePendingCart();
 
   // ── Where to redirect after login ──
   // Priority: location.state.from → /menu (so user lands back with cart visible)
