@@ -85,7 +85,7 @@ export default function CateringPage() {
         <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-[#c9a84c]/8 blur-[80px] rounded-full pointer-events-none z-0" />
 
         {/* Top text — no top padding, header is right above */}
-        <div className="flex-shrink-0 pt-[2vh] px-6 text-center z-10">
+        <div className="flex-shrink-0 mt-[60px] px-6 text-center z-10">
           <h1 className="text-[#D2A74B] font-serif text-[6.5vw] font-bold uppercase tracking-[0.12em] leading-none whitespace-nowrap">
             Catering &amp; Events
           </h1>

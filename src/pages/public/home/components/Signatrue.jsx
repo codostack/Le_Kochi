@@ -1,31 +1,36 @@
 import React, { useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SignatureDishes = () => {
   const scrollRef = useRef(null);
-
-  const dishes = [
-    {
-      title: "KOZHI CHADACHU KOOTIYADHU",
-      description: "Traditional Kerala Chicken Curry",
-      image: "https://i.pinimg.com/736x/09/3e/b1/093eb102de31c782c0d230f915473e2f.jpg",
-    },
-    {
-      title: "FISH MANGO CURRY",
-      description: "Kerala Style Fish Curry",
-      image: "https://i.pinimg.com/736x/09/3e/b1/093eb102de31c782c0d230f915473e2f.jpg",
-    },
-    {
-      title: "MASALA DOSA",
-      description: "Crispy & Delicious 61+ Varieties",
-      image: "https://i.pinimg.com/736x/09/3e/b1/093eb102de31c782c0d230f915473e2f.jpg",
-    },
-    {
-      title: "KERALA SNACKS",
-      description: "Traditional Snacks & Refreshments",
-      image: "https://i.pinimg.com/736x/09/3e/b1/093eb102de31c782c0d230f915473e2f.jpg",
-    },
-  ];
+const navigate = useNavigate();
+const dishes = [
+  {
+    title: "KOZHI CHADACHU KOOTIYADHU",
+    description: "Traditional Kerala Chicken Curry",
+    image:
+      "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1200&auto=format&fit=crop",
+  },
+{
+  title: "FISH MANGO CURRY",
+  description: "Kerala Style Fish Curry",
+  image:
+    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghMXkDKhyphenhyphenIgZnH5MSor2Y0CvHpc4A1RjZ1X_iey-aFOj2TKRGHlxEaCTlUMcvfaqEkF1fKz0M23vXfQKju_d3LW7rm6T31f6votTowKeqBcr6mbtfI-rrU5KiPFb0AdRUvZMOMAg42vWfd/s1600/_DSC0760.jpg",
+},
+  {
+    title: "MASALA DOSA",
+    description: "Crispy & Delicious 61+ Varieties",
+    image:
+      "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "KERALA SNACKS",
+    description: "Traditional Snacks & Refreshments",
+    image:
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop",
+  },
+];
 
   // Duplicating for the continuous loop effect
   const allDishes = [...dishes, ...dishes];
@@ -125,9 +130,12 @@ const SignatureDishes = () => {
                   {dish.description}
                 </p>
 
-                <button className="mt-2 border border-[#FFD700]/50 px-3 py-1 text-[8px] md:text-[10px] uppercase tracking-tighter hover:bg-[#FFD700] hover:text-black transition-colors">
-                  View More
-                </button>
+<button
+  onClick={() => navigate("/menu")}
+  className="mt-2 border border-[#FFD700]/50 px-3 py-1 text-[8px] md:text-[10px] uppercase tracking-tighter hover:bg-[#FFD700] hover:text-black transition-colors"
+>
+  View More
+</button>
               </div>
             </div>
           ))}

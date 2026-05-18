@@ -997,4 +997,4 @@ export default function App() {
   const [page, setPage] = useState("menu");
   if (page === "orders") return <OrdersPage onBack={() => setPage("menu")} />;
   return <MenuPage onGoOrders={() => setPage("orders")} />;
-}
+} 

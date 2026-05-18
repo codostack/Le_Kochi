@@ -26,7 +26,7 @@ export default function OrdersPage() {
     // ── FETCH ─────────────────────────────────────────────────────────────────
     const fetchOrders = async () => {
         try {
-            const res = await axiosInstance.get("/orders/admin/orders");
+            const res = await axiosInstance.get("/orders");
             if (res.data.success) {
                 setOrders(res.data.orders || []);
             }
@@ -41,7 +41,7 @@ export default function OrdersPage() {
     const handleStatusUpdate = async (id, newStatus) => {
         setUpdating(id);
         try {
-            const res = await axiosInstance.put(`/orders/admin/orders/${id}`, { status: newStatus });
+            const res = await axiosInstance.put(`/orders/${id}`, { status: newStatus });
             if (res.data.success) {
                 // Optimistic update – no full refetch needed
                 setOrders((prev) =>
@@ -65,7 +65,7 @@ prev.map((o) =>
     const handleDelete = async (id, orderId) => {
         if (!window.confirm(`Delete order ${orderId}? This cannot be undone.`)) return;
         try {
-            const res = await axiosInstance.delete(`/orders/admin/orders/${id}`);
+            const res = await axiosInstance.delete(`/orders/${id}`);
             if (res.data.success) {
                 setOrders((prev) => prev.filter((o) => o.id !== id));
             } else {

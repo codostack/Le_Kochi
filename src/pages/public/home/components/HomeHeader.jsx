@@ -1,10 +1,12 @@
 import React from 'react';
 import { MapPin, Phone, Clock, ShoppingBag, Leaf, Flame, Heart, Star, } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // Path adjusted as per your setup
 // import bgImage from '../../../../assets/images/WhatsApp Image 2026-05-14 at 4.31.29 PM (1).jpeg';
 
 const KeralaFlavoursHero = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen bg-black text-white font-sans overflow-hidden mt-[-120px]">
       
@@ -84,22 +86,28 @@ const KeralaFlavoursHero = () => {
              </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="grid grid-cols-2 md:flex md:flex-row gap-3">
-            <button className="bg-[#c5a059] hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm">
-   
-              View Menu
-            </button>
-            <button className="border border-gray-600 bg-black/60 md:bg-transparent md:border-red-600 hover:bg-red-600/10 text-white font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm">
-            
-              Join Whatsapp
-            </button>
-          </div>
+{/* Action Buttons */}
+<div className="grid grid-cols-2 md:flex md:flex-row gap-3">
+  
+  <button
+    onClick={() => navigate("/menu")}
+    className="bg-[#c5a059] hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm"
+  >
+    View Menu
+  </button>
+
+  <button
+    onClick={() => window.open("https://wa.me/919999999999", "_blank")}
+    className="border border-gray-600 bg-black/60 md:bg-transparent md:border-red-600 hover:bg-red-600/10 text-white font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors uppercase text-[11px] md:text-sm"
+  >
+    Join Whatsapp
+  </button>
+</div>
         </div>
       </div>
 
       {/* Footer Info Bar */}
-      <div className="absolute bottom-0 w-full bg-[rgb(10,10,10)]/90 border-t border-gray-900 backdrop-blur-md">
+<div className="absolute bottom-0 w-full bg-[rgb(10,10,10)]/90 border-t border-gray-900 backdrop-blur-md z-20">
         <div className="max-w-7xl mx-auto px-4 py-3 md:py-6">
           <div className="grid grid-cols-3 md:grid-cols-4 gap-1 md:gap-8 items-center mb-4 md:mb-0">
             
@@ -128,16 +136,22 @@ const KeralaFlavoursHero = () => {
               </div>
             </div>
 
-            <button className="hidden md:flex bg-red-700 hover:bg-red-800 text-white font-bold py-4 px-6 rounded items-center justify-between transition-colors uppercase text-sm">
-              <span>Order Online</span>
-              <ShoppingBag size={18} />
-            </button>
+<button
+  onClick={() => navigate("/menu")}
+  className="hidden md:flex relative z-20 bg-red-700 hover:bg-red-800 text-white font-bold py-4 px-6 rounded items-center justify-between transition-colors uppercase text-sm cursor-pointer"
+>
+  <span>Order Online</span>
+  <ShoppingBag size={18} />
+</button>
           </div>
 
-          <button className="md:hidden w-full bg-red-800 text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-3 uppercase text-xs mt-2 mb-8">
-            <span>Order Online</span>
-            <ShoppingBag size={16} />
-          </button>
+<button
+  onClick={() => navigate("/menu")}
+  className="md:hidden relative z-20 w-full bg-red-800 text-white font-bold py-3.5 rounded-md flex items-center justify-center gap-3 uppercase text-xs mt-2 mb-8 cursor-pointer"
+>
+  <span>Order Online</span>
+  <ShoppingBag size={16} />
+</button>
         </div>
       </div>
     </div>

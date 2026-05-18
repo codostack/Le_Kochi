@@ -15,7 +15,7 @@ export default function PaymentsPage() {
 
     const fetchPayments = async () => {
         try {
-            const res = await axiosInstance.get("/admin/payments");
+            const res = await axiosInstance.get("/orders/payments");
             if (res.data.success) {
                 setPaymentData(res.data.paymentData   || { daily: [], monthly: [], yearly: [] });
                 setRecentOrders(res.data.recentOrders || []);

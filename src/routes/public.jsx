@@ -14,7 +14,7 @@ import OrderPage from "../pages/order/page";
 import RestaurantMenu from "../pages/public/mean/page";
 import CateringPage from "../pages/public/catering&event/page";
 import Home from "../pages/public/home/page";
-import CateringGallery from "../pages/public/gallery/page";
+import CateringGallery from "../pages/public/review/page";
 import RegistrationPage from "../pages/customer/api/registration";
 
 const PublicRoutes = () => {
