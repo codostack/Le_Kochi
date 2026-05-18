@@ -30,7 +30,7 @@ const KeralaFlavoursHero = () => {
 </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 md:pt-20 pb-40 md:pb-32 mt-[100px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 md:pt-20 pb-40 md:pb-32 mt-[50px]">
         <div className="max-w-2xl text-left mt-5">
           <p className="italic text-lg md:text-2xl font-serif mb-1 text-gray-200">A New Rhythm of</p>
           {/* <h1 className=" font-black tracking-tighter leading-none mb-4">
@@ -87,7 +87,7 @@ const KeralaFlavoursHero = () => {
           </div>
 
 {/* Action Buttons */}
-<div className="grid grid-cols-2 md:flex md:flex-row gap-3">
+<div className="grid grid-cols-2 md:flex md:flex-row gap-3 mt-[80px]">
   
   <button
     onClick={() => navigate("/menu")}
