@@ -40,14 +40,14 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 w-full z-[1000] bg-[#041a13] transition-all duration-500">
 
         {/* TOP BAR */}
-        <div className="max-w-[1920px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 py-3 lg:py-4">
+        <div className="max-w-[1920px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 py-2 lg:py-2.5">
 
           {/* LOGO */}
           <Link to="/" className="flex items-center shrink-0">
             <img
               src={logo}
               alt="Le Kochi Logo"
-              className="w-auto h-[45px] sm:h-[55px] lg:h-[70px]"
+              className="w-auto h-[40px] sm:h-[48px] lg:h-[55px]"
             />
           </Link>
 
@@ -71,17 +71,8 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* DESKTOP RIGHT ACTIONS */}
+          {/* DESKTOP RIGHT ACTIONS - Account icon removed, Order Online button remains */}
           <div className="hidden lg:flex items-center gap-4 shrink-0">
-            {/* Profile icon — desktop */}
-            <Link
-              to="/customer/account"
-              aria-label="My Account"
-              className="w-9 h-9 rounded-full border border-[#c29b40]/50 hover:border-[#c29b40] bg-transparent flex items-center justify-center transition-all duration-300 group"
-            >
-              <FiUser className="text-[#c29b40] text-lg" />
-            </Link>
-
             <Link
               to="/menu"
               className="flex items-center gap-3 border-2 border-red-600 px-6 py-2 rounded-full hover:bg-red-600 transition-all duration-300 group"
@@ -113,7 +104,7 @@ export default function Navbar() {
         >
           <div className="flex flex-col h-full px-8 pt-8 pb-8 overflow-y-auto">
 
-            {/* HEADER */}
+            {/* HEADER - Account icon safely remains here for mobile layout */}
             <div className="flex flex-col items-start">
               <div className="w-full flex items-center justify-between mt-5 mb-[15px]">
                 <img
@@ -204,14 +195,12 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Note: The bottom gold divider and the full-width red 'Order Online' link button have been removed from here */}
-
           </div>
         </div>
       </nav>
 
       {/* SPACER */}
-      <div className="h-[68px] sm:h-[80px] lg:h-[95px]" />
+      <div className="h-[56px] sm:h-[64px] lg:h-[75px]" />
     </>
   );
 }
